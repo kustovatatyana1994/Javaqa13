@@ -74,4 +74,31 @@ public class ProductRepositoryTest {
         Assertions.assertArrayEquals(expected, actual);
     }
 
+    @Test
+
+    public void removeByMissingId() {
+        repo.add(item1);
+        repo.add(item2);
+        repo.add(item3);
+        repo.add(item4);
+
+        Assertions.assertThrows(NotFoundException.class, () -> {
+            repo.removeById(164);
+        });
+    }
+
+    @Test
+    public void removeByNegativeId() {
+        repo.add(item1);
+        repo.add(item2);
+        repo.add(item3);
+        repo.add(item4);
+
+        Assertions.assertThrows(NotFoundException.class, () -> {
+            repo.removeById(-6);
+        });
+    }
+
+
+
 }
